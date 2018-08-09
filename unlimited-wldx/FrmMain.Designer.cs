@@ -37,13 +37,15 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelNav = new System.Windows.Forms.Panel();
             this.TextNav = new System.Windows.Forms.TextBox();
             this.BtnGo = new System.Windows.Forms.Button();
             this.WebBrowserMain = new System.Windows.Forms.WebBrowser();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.ExportStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExampleSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.DatabaseOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuMain.SuspendLayout();
             this.panelNav.SuspendLayout();
             this.SuspendLayout();
@@ -83,12 +85,14 @@
             this.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem";
             this.ImportToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.ImportToolStripMenuItem.Text = "&Import answer database";
+            this.ImportToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
             // 
             // ShowToolStripMenuItem
             // 
             this.ShowToolStripMenuItem.Name = "ShowToolStripMenuItem";
             this.ShowToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.ShowToolStripMenuItem.Text = "&Show hints";
+            this.ShowToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -100,6 +104,7 @@
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
             this.ExitToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.ExitToolStripMenuItem.Text = "&Exit";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -111,11 +116,24 @@
             this.HelpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
             this.HelpToolStripMenuItem.Text = "&Help";
             // 
+            // ExportStripMenuItem
+            // 
+            this.ExportStripMenuItem.Name = "ExportStripMenuItem";
+            this.ExportStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.ExportStripMenuItem.Text = "&Export example database";
+            this.ExportStripMenuItem.Click += new System.EventHandler(this.ExportStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(222, 6);
+            // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
             this.AboutToolStripMenuItem.Text = "&About";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // panelNav
             // 
@@ -161,16 +179,17 @@
             this.WebBrowserMain.TabIndex = 3;
             this.WebBrowserMain.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowserMain_Navigating);
             // 
-            // toolStripSeparator2
+            // ExampleSaveFileDialog
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(215, 6);
+            this.ExampleSaveFileDialog.FileName = "example.sqlite";
+            this.ExampleSaveFileDialog.Filter = "sqlite file (*.sqlite)|*.sqlite|db file (*.db)|*.db|all file (*.*)|*.*";
+            this.ExampleSaveFileDialog.RestoreDirectory = true;
             // 
-            // ExportStripMenuItem
+            // DatabaseOpenFileDialog
             // 
-            this.ExportStripMenuItem.Name = "ExportStripMenuItem";
-            this.ExportStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.ExportStripMenuItem.Text = "&Export sample database";
+            this.DatabaseOpenFileDialog.Filter = "sqlite file (*.sqlite)|*.sqlite|db file (*.db)|*.db|all file (*.*)|*.*";
+            this.DatabaseOpenFileDialog.RestoreDirectory = true;
+            this.DatabaseOpenFileDialog.ShowReadOnly = true;
             // 
             // FromMain
             // 
@@ -184,7 +203,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuMain;
             this.Name = "FromMain";
-            this.Text = "unlimited wldx";
+            this.Text = "unlimited-wldx";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FromMain_FormClosing);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
@@ -212,6 +231,8 @@
         private System.Windows.Forms.WebBrowser WebBrowserMain;
         private System.Windows.Forms.ToolStripMenuItem ExportStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.SaveFileDialog ExampleSaveFileDialog;
+        private System.Windows.Forms.OpenFileDialog DatabaseOpenFileDialog;
     }
 }
 
