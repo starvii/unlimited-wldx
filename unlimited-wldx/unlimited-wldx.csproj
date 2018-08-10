@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{47797E17-A781-45B2-B666-E15D8E92A8C6}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>wldx</RootNamespace>
     <AssemblyName>unlimited-wldx</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -49,8 +49,7 @@
     <StartupObject>unlimited_wldx.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -116,6 +115,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon.ico" />
     <Content Include="resource\icon.ico" />
     <Content Include="resource\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

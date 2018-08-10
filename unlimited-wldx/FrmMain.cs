@@ -85,7 +85,45 @@ namespace unlimited_wldx
 
         private void ShowToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            HtmlElementCollection c = WebBrowserMain.Document.GetElementsByTagName("div");
+            IList<HtmlElement> nodeList = new List<HtmlElement>();
+            foreach(HtmlElement h in c)
+            {
+                //Console.WriteLine(className);
+                if ("TMTitle".Equals(h.GetAttribute("className")))
+                {
+                    nodeList.Add(h.Parent);
+                }
+            }
+            
+            foreach(HtmlElement h in nodeList)
+            {
+                HtmlElement node = h.Parent;
 
+                Console.WriteLine(ExtractFromHtmlNode(node).ToString());
+            }
+            Console.WriteLine(nodeList.Count);
+            //MessageBox.Show(c.Count.ToString());
+        }
+
+        private Question ExtractFromHtmlNode(HtmlElement node) {
+            Question q = new Question() { Options = new List<string>() };
+            foreach (HtmlElement e in node.GetElementsByTagName("div"))
+            {
+                if ("TMTitle".Equals(e.GetAttribute("className")))
+                {
+                    q.Trunk = e.InnerText.Trim();
+                    break;
+                }
+            }
+            foreach (HtmlElement e in node.GetElementsByTagName("span"))
+            {
+                if ("TMOption".Equals(e.GetAttribute("className")))
+                {
+                    q.Options.Add(e.InnerText.Trim());
+                }
+            }
+            return q;
         }
     }
 }

@@ -20,6 +20,20 @@ namespace wldx
     {
         public string Trunk { get; set; } // 题干
         public IList<string> Options { get; set; } // 选项
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Trunk);
+            sb.Append("\r\n");
+            foreach (string opt in Options)
+            {
+                sb.Append(opt);
+                sb.Append("\r\n");
+            }
+            return sb.ToString();
+        }
     }
 
     public class Mugen
