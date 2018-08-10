@@ -91,6 +91,11 @@ namespace wldx
             return null;
         }
 
+        public IDictionary<string, Question> AnswerFromXml(string path)
+        {
+            return null;
+        }
+
         public bool GenerateExample(string path)
         {
             XmlDocument doc = new XmlDocument();
@@ -119,56 +124,6 @@ namespace wldx
                 Console.Error.Write(e);
                 return false;
             }
-            
         }
-
-//        public bool GenerateSampleDatabase(string path)
-//        {
-//            string[] sqls = { @"
-//CREATE TABLE IF NOT EXISTS `trunk` (
-//    `id` INTEGER PRIMARY KEY,
-//    `trunk` TEXT NOT NULL,
-//    `type` INTEGER
-//);
-//", // 0 未定义，1 单选题，2 多选题， 3 判断题
-//@"
-//CREATE TABLE IF NOT EXISTS `options` (
-//    `id` INTEGER PRIMARY KEY,
-//    `tid` INTEGER NOT NULL,
-//    `option` TEXT NOT NULL,
-//    `result` INTEGER
-//);
-//",
-//@"
-//CREATE UNIQUE INDEX IF NOT EXISTS `idx_trunk`
-//ON `trunk` (`trunk_digest`);
-//",
-//@"
-//CREATE UNIQUE INDEX IF NOT EXISTS `idx_option`
-//ON `options` (`option_digest`);
-//"
-//                    };
-//            try
-//            {
-//                using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + path))
-//                {
-//                    connection.Open();
-//                    using (SQLiteCommand command = new SQLiteCommand(connection))
-//                    {
-//                        foreach (string sql in sqls)
-//                        {
-//                            command.CommandText = sql;
-//                            command.ExecuteNonQuery();
-//                        }
-//                    }
-//                }
-//                return true;
-//            }
-//            catch (Exception e)
-//            {
-//                return false;
-//                throw e;
-//            }
-//        }
     }
 }
