@@ -16,9 +16,11 @@ namespace wldx
             return null;
         }
     }
+
     public class Question
     {
         public string Trunk { get; set; } // 题干
+        
         public IList<string> Options { get; set; } // 选项
 
 
@@ -64,11 +66,11 @@ CREATE TABLE IF NOT EXISTS `options` (
 ",
 @"
 CREATE UNIQUE INDEX IF NOT EXISTS `idx_trunk`
-ON `trunk` (`trunk`);
+ON `trunk` (`trunk_digest`);
 ",
 @"
 CREATE UNIQUE INDEX IF NOT EXISTS `idx_option`
-ON `options` (`option`);
+ON `options` (`option_digest`);
 "
                     };
             try
