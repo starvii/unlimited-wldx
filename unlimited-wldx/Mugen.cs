@@ -49,16 +49,14 @@ namespace wldx
         {
             string[] sqls = { @"
 CREATE TABLE IF NOT EXISTS `trunk` (
-    `db_id` INTEGER PRIMARY KEY, 
-    `id` INTEGER NOT NULL, 
+    `id` INTEGER PRIMARY KEY,
     `trunk` TEXT NOT NULL,
     `type` INTEGER
 );
-",
+", // 0 未定义，1 单选题，2 多选题， 3 判断题
 @"
 CREATE TABLE IF NOT EXISTS `options` (
-    `db_id` INTEGER PRIMARY KEY,
-    `id` INTEGER NOT NULL,
+    `id` INTEGER PRIMARY KEY,
     `tid` INTEGER NOT NULL,
     `option` TEXT NOT NULL,
     `result` INTEGER

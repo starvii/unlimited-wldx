@@ -9,16 +9,25 @@ if sys.version_info.major < 3:
     range = xrange
     input = raw_input
 
-DOCFILE = 'C:\\Users\\WindowsX\\Desktop\\sample\\sample.txt'
-DBFILE = 'C:\\Users\\WindowsX\\Desktop\\sample\\sample.sqlite'
+DOCFILE = 'D:\\src\\unlimited-wldx\\sample\\sample.txt'
+DBFILE = 'D:\\src\\unlimited-wldx\\sample\\sample.sqlite'
 
 def write_db(questions):
-    sql = '''
-INSERT INTO 
+    sql_trunk = '''
+INSERT INTO `trunk` (`trunk`, `type`) VALUES(?, ?);
+'''
+    sql_opt = '''
+INSERT INTO `options` (`tid`, `option`, `result`) VALUES(?, ?, ?);
 '''
 
     with sqlite3.connect(DBFILE) as conn:
-        
+        c = conn.cursor()
+        for q in questions:
+            c.execute(sql_trunk, (q[0], 0))
+            tid = c.lastrowid
+            for l in q[1:]:
+                c.execute(sql_opt, (tid, l[0], l[1]))
+                
 
 def extract(lines):
     # print(lines)
@@ -68,6 +77,7 @@ def main():
     if buf:
         q = extract(buf)
         questions.append(q)
+    write_db(questions)
 
 
 
