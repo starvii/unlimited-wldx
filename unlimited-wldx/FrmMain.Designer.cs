@@ -52,7 +52,7 @@
             // 
             // statusMain
             // 
-            this.statusMain.Location = new System.Drawing.Point(0, 494);
+            this.statusMain.Location = new System.Drawing.Point(0, 537);
             this.statusMain.Name = "statusMain";
             this.statusMain.Size = new System.Drawing.Size(800, 22);
             this.statusMain.TabIndex = 0;
@@ -65,7 +65,7 @@
             this.HelpToolStripMenuItem});
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(800, 25);
+            this.menuMain.Size = new System.Drawing.Size(800, 24);
             this.menuMain.TabIndex = 1;
             this.menuMain.Text = "menuStrip1";
             // 
@@ -77,32 +77,32 @@
             this.toolStripSeparator1,
             this.ExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // ImportToolStripMenuItem
             // 
             this.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem";
-            this.ImportToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.ImportToolStripMenuItem.Text = "&Import answer database";
+            this.ImportToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.ImportToolStripMenuItem.Text = "&Import questions xml";
             this.ImportToolStripMenuItem.Click += new System.EventHandler(this.ImportToolStripMenuItem_Click);
             // 
             // ShowToolStripMenuItem
             // 
             this.ShowToolStripMenuItem.Name = "ShowToolStripMenuItem";
-            this.ShowToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.ShowToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.ShowToolStripMenuItem.Text = "&Show hints";
             this.ShowToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(216, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.ExitToolStripMenuItem.Text = "&Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -113,25 +113,25 @@
             this.toolStripSeparator2,
             this.AboutToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.HelpToolStripMenuItem.Text = "&Help";
             // 
             // ExportStripMenuItem
             // 
             this.ExportStripMenuItem.Name = "ExportStripMenuItem";
-            this.ExportStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.ExportStripMenuItem.Text = "&Export example database";
+            this.ExportStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.ExportStripMenuItem.Text = "&Export example template";
             this.ExportStripMenuItem.Click += new System.EventHandler(this.ExportStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(222, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(201, 6);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.AboutToolStripMenuItem.Text = "&About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -141,10 +141,10 @@
             this.panelNav.Controls.Add(this.TextNav);
             this.panelNav.Controls.Add(this.BtnGo);
             this.panelNav.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelNav.Location = new System.Drawing.Point(0, 25);
+            this.panelNav.Location = new System.Drawing.Point(0, 24);
             this.panelNav.Name = "panelNav";
             this.panelNav.Padding = new System.Windows.Forms.Padding(10, 1, 10, 1);
-            this.panelNav.Size = new System.Drawing.Size(800, 26);
+            this.panelNav.Size = new System.Drawing.Size(800, 28);
             this.panelNav.TabIndex = 2;
             // 
             // TextNav
@@ -153,7 +153,7 @@
             this.TextNav.Location = new System.Drawing.Point(10, 1);
             this.TextNav.Multiline = true;
             this.TextNav.Name = "TextNav";
-            this.TextNav.Size = new System.Drawing.Size(705, 24);
+            this.TextNav.Size = new System.Drawing.Size(705, 26);
             this.TextNav.TabIndex = 1;
             this.TextNav.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextNav_KeyPress);
             // 
@@ -162,7 +162,7 @@
             this.BtnGo.Dock = System.Windows.Forms.DockStyle.Right;
             this.BtnGo.Location = new System.Drawing.Point(715, 1);
             this.BtnGo.Name = "BtnGo";
-            this.BtnGo.Size = new System.Drawing.Size(75, 24);
+            this.BtnGo.Size = new System.Drawing.Size(75, 26);
             this.BtnGo.TabIndex = 0;
             this.BtnGo.Text = "GO";
             this.BtnGo.UseVisualStyleBackColor = true;
@@ -171,31 +171,31 @@
             // WebBrowserMain
             // 
             this.WebBrowserMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WebBrowserMain.Location = new System.Drawing.Point(0, 51);
-            this.WebBrowserMain.MinimumSize = new System.Drawing.Size(20, 20);
+            this.WebBrowserMain.Location = new System.Drawing.Point(0, 52);
+            this.WebBrowserMain.MinimumSize = new System.Drawing.Size(20, 22);
             this.WebBrowserMain.Name = "WebBrowserMain";
             this.WebBrowserMain.ScriptErrorsSuppressed = true;
-            this.WebBrowserMain.Size = new System.Drawing.Size(800, 443);
+            this.WebBrowserMain.Size = new System.Drawing.Size(800, 485);
             this.WebBrowserMain.TabIndex = 3;
             this.WebBrowserMain.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowserMain_Navigating);
             // 
             // ExampleSaveFileDialog
             // 
-            this.ExampleSaveFileDialog.FileName = "example.sqlite";
-            this.ExampleSaveFileDialog.Filter = "sqlite file (*.sqlite)|*.sqlite|db file (*.db)|*.db|all file (*.*)|*.*";
+            this.ExampleSaveFileDialog.FileName = "example.xml";
+            this.ExampleSaveFileDialog.Filter = "XML file (*.xml)|*.xml|all file (*.*)|*.*";
             this.ExampleSaveFileDialog.RestoreDirectory = true;
             // 
             // DatabaseOpenFileDialog
             // 
-            this.DatabaseOpenFileDialog.Filter = "sqlite file (*.sqlite)|*.sqlite|db file (*.db)|*.db|all file (*.*)|*.*";
+            this.DatabaseOpenFileDialog.Filter = "XML file (*.xml)|*.xml|all file (*.*)|*.*";
             this.DatabaseOpenFileDialog.RestoreDirectory = true;
             this.DatabaseOpenFileDialog.ShowReadOnly = true;
             // 
             // FromMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 516);
+            this.ClientSize = new System.Drawing.Size(800, 559);
             this.Controls.Add(this.WebBrowserMain);
             this.Controls.Add(this.panelNav);
             this.Controls.Add(this.statusMain);

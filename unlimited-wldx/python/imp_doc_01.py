@@ -4,30 +4,26 @@
 from __future__ import print_function
 import sys
 import re
-import sqlite3
+from xml.etree.ElementTree import ElementTree, Element, SubElement
 if sys.version_info.major < 3:
     range = xrange
     input = raw_input
 
-DOCFILE = 'D:\\src\\unlimited-wldx\\sample\\sample.txt'
-DBFILE = 'D:\\src\\unlimited-wldx\\sample\\sample.sqlite'
+DOC_FILE = 'D:\\src\\unlimited-wldx\\sample\\sample.txt'
+XML_FILE = 'D:\\src\\unlimited-wldx\\sample\\sample.xml'
 
-def write_db(questions):
-    sql_trunk = '''
-INSERT INTO `trunk` (`trunk`, `type`) VALUES(?, ?);
-'''
-    sql_opt = '''
-INSERT INTO `options` (`tid`, `option`, `result`) VALUES(?, ?, ?);
-'''
+def write_xml(questions):
+    root = Element('questions')
+    for q in questions:
+        trunk = q[0]
+        node = SubElement(root, 'question')
+        node.text = trunk
+        for l in q[1:]:
+            opt = SubElement(node, 'option', {'corrent': str(l[1])})
+            opt.text = l[0]
+    tree = ElementTree(root)
+    tree.write(XML_FILE, encoding='utf-8')
 
-    with sqlite3.connect(DBFILE) as conn:
-        c = conn.cursor()
-        for q in questions:
-            c.execute(sql_trunk, (q[0], 0))
-            tid = c.lastrowid
-            for l in q[1:]:
-                c.execute(sql_opt, (tid, l[0], l[1]))
-                
 
 def extract(lines):
     # print(lines)
@@ -47,14 +43,14 @@ def extract(lines):
         assert len(rn) > 0
         n = len(rn[0])
         if line[0] in answer:
-            ret.append((line[n:], True))
+            ret.append((line[n:], 1))
         else:
-            ret.append((line[n:], False))
+            ret.append((line[n:], 0))
     # print(ret)
     return ret
 
 def main():
-    lines = open(DOCFILE, 'r').readlines()
+    lines = open(DOC_FILE, 'r').readlines()
     state = 0
     questions = list()
     buf = None
@@ -77,7 +73,7 @@ def main():
     if buf:
         q = extract(buf)
         questions.append(q)
-    write_db(questions)
+    write_xml(questions)
 
 
 

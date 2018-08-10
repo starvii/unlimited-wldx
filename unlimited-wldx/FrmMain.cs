@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using wldx;
 
@@ -53,7 +48,7 @@ namespace unlimited_wldx
         {
             if (ExampleSaveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                bool r = new Mugen().GenerateSampleDatabase(ExampleSaveFileDialog.FileName.ToString());
+                bool r = new Mugen().GenerateExample(ExampleSaveFileDialog.FileName.ToString());
                 if (r)
                 {
                     MessageBox.Show("example is saved.", "DONE", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -85,45 +80,17 @@ namespace unlimited_wldx
 
         private void ShowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HtmlElementCollection c = WebBrowserMain.Document.GetElementsByTagName("div");
-            IList<HtmlElement> nodeList = new List<HtmlElement>();
-            foreach(HtmlElement h in c)
+            if (null == WebBrowserMain.Document)
             {
-                //Console.WriteLine(className);
-                if ("TMTitle".Equals(h.GetAttribute("className")))
-                {
-                    nodeList.Add(h.Parent);
-                }
+                MessageBox.Show("cannot find element. you may not enter the right url.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            
-            foreach(HtmlElement h in nodeList)
+            IList<Question> list = WebElement.ExtractQuestionFromHtml(WebBrowserMain.Document);
+            if (null == list && 0 == list.Count)
             {
-                HtmlElement node = h.Parent;
-
-                Console.WriteLine(ExtractFromHtmlNode(node).ToString());
+                MessageBox.Show("cannot find element. you may not enter the right url.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            Console.WriteLine(nodeList.Count);
-            //MessageBox.Show(c.Count.ToString());
-        }
-
-        private Question ExtractFromHtmlNode(HtmlElement node) {
-            Question q = new Question() { Options = new List<string>() };
-            foreach (HtmlElement e in node.GetElementsByTagName("div"))
-            {
-                if ("TMTitle".Equals(e.GetAttribute("className")))
-                {
-                    q.Trunk = e.InnerText.Trim();
-                    break;
-                }
-            }
-            foreach (HtmlElement e in node.GetElementsByTagName("span"))
-            {
-                if ("TMOption".Equals(e.GetAttribute("className")))
-                {
-                    q.Options.Add(e.InnerText.Trim());
-                }
-            }
-            return q;
         }
     }
 }

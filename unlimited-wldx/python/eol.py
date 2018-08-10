@@ -9,7 +9,7 @@ if sys.version_info.major < 3:
     range = xrange
     input = raw_input
 
-EXT = {'cs', 'resx', 'csproj'}
+EXT = {'cs', 'resx', 'csproj', 'config', 'sln'}
 ROOT = 'D:/src/unlimited-wldx'
 
 def replace(path):
