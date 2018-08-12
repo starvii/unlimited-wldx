@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using wldx;
+using System.Threading;
 
 namespace unlimited_wldx
 {
@@ -110,11 +111,51 @@ namespace unlimited_wldx
 				MessageBox.Show("cannot find element. you may not enter the right url.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
-			foreach (WebQuestion wq in list)
+			Thread t = new Thread(new ParameterizedThreadStart(FindAnswerThread));
+			t.Start(list);
+			
+		}
+
+		private void FindAnswerThread(object param)
+		{
+			ProgressChangedHandler progressChangedHandler = new ProgressChangedHandler(SetProgress);
+			RendererWebHandler rendererWebHandler = new RendererWebHandler(WebHelper.RendererElement);
+
+			object[] progressParams = new object[3] { 0, 100, 0 };
+			object[] rendererParams = new object[2];
+			try
+			//if (param.GetType() == typeof(IList<WebQuestion>))
 			{
-				ISet<int> answers = mugen.FindAnswer(wq);
-				WebHelper.RendererElement(wq, answers);
+				IList<WebQuestion> list = (IList<WebQuestion>)param;
+				progressParams[1] = list.Count;
+				int c = 0;
+				foreach (WebQuestion wq in list)
+				{
+					ISet<int> answers = mugen.FindAnswer(wq);
+					rendererParams[0] = wq;
+					rendererParams[1] = answers;
+					Invoke(rendererWebHandler, rendererParams);
+					//WebHelper.RendererElement(wq, answers);
+
+					progressParams[2] = ++c;
+					Invoke(progressChangedHandler, progressParams);
+				}
+				//Invoke()
 			}
+			catch (Exception e)
+			{
+				Console.Error.WriteLine("param is not typeof IList.");
+				Console.Error.WriteLine(e);
+			}
+		}
+
+		private delegate void RendererWebHandler(WebQuestion wq, ISet<int> answers);
+		private delegate void ProgressChangedHandler(int min, int max, int value);
+		private void SetProgress(int min, int max, int value)
+		{
+			ProgressBar.Minimum = min;
+			ProgressBar.Maximum = max;
+			ProgressBar.Value = value;
 		}
 
 		private void WebBrowserMain_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -123,6 +164,12 @@ namespace unlimited_wldx
 			{
 				LabelWeb.Text = "web element prepared.";
 			}
+		}
+
+		private void FromMain_Load(object sender, EventArgs e)
+		{
+			LabelWeb.Text = "";
+			LabelXml.Text = "";
 		}
 	}
 }

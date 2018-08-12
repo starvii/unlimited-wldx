@@ -30,6 +30,8 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FromMain));
 			this.statusMain = new System.Windows.Forms.StatusStrip();
+			this.LabelXml = new System.Windows.Forms.ToolStripStatusLabel();
+			this.LabelWeb = new System.Windows.Forms.ToolStripStatusLabel();
 			this.menuMain = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,8 +48,7 @@
 			this.WebBrowserMain = new System.Windows.Forms.WebBrowser();
 			this.ExampleSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.DatabaseOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-			this.LabelXml = new System.Windows.Forms.ToolStripStatusLabel();
-			this.LabelWeb = new System.Windows.Forms.ToolStripStatusLabel();
+			this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
 			this.statusMain.SuspendLayout();
 			this.menuMain.SuspendLayout();
 			this.panelNav.SuspendLayout();
@@ -56,6 +57,7 @@
 			// statusMain
 			// 
 			this.statusMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ProgressBar,
             this.LabelXml,
             this.LabelWeb});
 			this.statusMain.Location = new System.Drawing.Point(0, 537);
@@ -63,6 +65,18 @@
 			this.statusMain.Size = new System.Drawing.Size(800, 22);
 			this.statusMain.TabIndex = 0;
 			this.statusMain.Text = "statusStrip1";
+			// 
+			// LabelXml
+			// 
+			this.LabelXml.Name = "LabelXml";
+			this.LabelXml.Size = new System.Drawing.Size(56, 17);
+			this.LabelXml.Text = "LabelXml";
+			// 
+			// LabelWeb
+			// 
+			this.LabelWeb.Name = "LabelWeb";
+			this.LabelWeb.Size = new System.Drawing.Size(59, 17);
+			this.LabelWeb.Text = "LabelWeb";
 			// 
 			// menuMain
 			// 
@@ -198,15 +212,11 @@
 			this.DatabaseOpenFileDialog.RestoreDirectory = true;
 			this.DatabaseOpenFileDialog.ShowReadOnly = true;
 			// 
-			// LabelXml
+			// ProgressBar
 			// 
-			this.LabelXml.Name = "LabelXml";
-			this.LabelXml.Size = new System.Drawing.Size(0, 17);
-			// 
-			// LabelWeb
-			// 
-			this.LabelWeb.Name = "LabelWeb";
-			this.LabelWeb.Size = new System.Drawing.Size(0, 17);
+			this.ProgressBar.Name = "ProgressBar";
+			this.ProgressBar.Size = new System.Drawing.Size(100, 16);
+			this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			// 
 			// FromMain
 			// 
@@ -222,6 +232,7 @@
 			this.Name = "FromMain";
 			this.Text = "unlimited-wldx";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FromMain_FormClosing);
+			this.Load += new System.EventHandler(this.FromMain_Load);
 			this.statusMain.ResumeLayout(false);
 			this.statusMain.PerformLayout();
 			this.menuMain.ResumeLayout(false);
@@ -254,6 +265,7 @@
         private System.Windows.Forms.OpenFileDialog DatabaseOpenFileDialog;
 		private System.Windows.Forms.ToolStripStatusLabel LabelXml;
 		private System.Windows.Forms.ToolStripStatusLabel LabelWeb;
+		private System.Windows.Forms.ToolStripProgressBar ProgressBar;
 	}
 }
 
