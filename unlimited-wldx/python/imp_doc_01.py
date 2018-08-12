@@ -19,7 +19,7 @@ def write_xml(questions):
         node = SubElement(root, 'question')
         node.text = trunk
         for l in q[1:]:
-            opt = SubElement(node, 'option', {'corrent': str(l[1])})
+            opt = SubElement(node, 'option', {'correct': str(l[1])})
             opt.text = l[0]
     tree = ElementTree(root)
     tree.write(XML_FILE, encoding='utf-8')

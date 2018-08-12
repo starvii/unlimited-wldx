@@ -4,6 +4,13 @@ namespace wldx
 {
     public class Distance
     {
+		/// <summary>
+		/// 计算两个字符串之间的差异性
+		/// 相同返回0，差异越大返回数值越大
+		/// </summary>
+		/// <param name="a"></param>
+		/// <param name="b"></param>
+		/// <returns></returns>
         static public int Levenshtein(string a, string b)
         {
             if (string.IsNullOrEmpty(a) && string.IsNullOrEmpty(b))
