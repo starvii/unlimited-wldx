@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+availabe in python3
+"""
+
 from __future__ import print_function
 import sys
 import re
