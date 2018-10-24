@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Text;
 using System.Xml;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace wldx
 {
@@ -158,6 +160,46 @@ namespace wldx
 	{
 		public int Threshold { get; set; } = 10;
 
+		public static readonly int SPAMSUM_LENGTH = 64;
+		public static readonly int FUZZY_MAX_RESULT = 2 * SPAMSUM_LENGTH + 20;
+
+		/// <summary>
+		/// 调用 ssdep fuzzy.dll 获取模糊hash
+		/// </summary>
+		/// <param name="buf"></param>
+		/// <param name="bufLen"></param>
+		/// <param name="result"></param>
+		/// <returns></returns>
+		[DllImport("fuzzy.dll", CharSet = CharSet.Ansi, EntryPoint = "fuzzy_hash_buf", CallingConvention = CallingConvention.Cdecl)]
+		public extern static int DllFuzzyHashBuf([MarshalAs(UnmanagedType.LPArray)] byte[] buf, UInt32 bufLen, [MarshalAs(UnmanagedType.LPArray)] byte[] result);
+
+		[DllImport("fuzzy.dll", CharSet = CharSet.Ansi, EntryPoint = "fuzzy_compare", CallingConvention = CallingConvention.Cdecl)]
+		public extern static int DllFuzzyCompare([MarshalAs(UnmanagedType.LPArray)] byte[] sig1, [MarshalAs(UnmanagedType.LPArray)] byte[] sig2);
+
+		/// <summary>
+		/// 获取 string 的模糊hash
+		/// </summary>
+		/// <param name="str"></param>
+		/// <returns></returns>
+		public string FuzzyString(string str)
+		{
+			byte[] result = new byte[FUZZY_MAX_RESULT];
+			byte[] buf = Encoding.Default.GetBytes(str);
+			int ret = DllFuzzyHashBuf(buf, (UInt32)buf.Length, result);
+			if (ret == 0)
+			{
+				return Encoding.Default.GetString(result);
+			}
+			return "";
+		}
+
+		public int FuzzyCompare(string sig1, string sig2)
+		{
+			byte[] b1 = Encoding.Default.GetBytes(sig1);
+			byte[] b2 = Encoding.Default.GetBytes(sig2);
+			return DllFuzzyCompare(b1, b2);
+		}
+
 		/// <summary>
 		/// 内存数据库
 		/// </summary>
@@ -295,7 +337,14 @@ namespace wldx
 							q.Options.Add(new Option() { OptionText = o, Correct = c });
 						}
 					}
-					AnswerDatabase.Add(q.Trunk, q);
+					if (!AnswerDatabase.ContainsKey(q.Trunk))
+					{
+						AnswerDatabase.Add(q.Trunk, q);
+					}
+					else
+					{
+						Console.Error.WriteLine(string.Format("'{}' exists.", q.Trunk));
+					}
 				}
 				return true;
 			}
