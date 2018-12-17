@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using wldx;
 using System.Threading;
 
-namespace unlimited_wldx
+namespace wldx
 {
 	public partial class FromMain : Form
 	{
-		private readonly Mugen mugen = new Mugen();
-
 		public FromMain()
 		{
 			InitializeComponent();
@@ -54,7 +51,7 @@ namespace unlimited_wldx
 		{
 			if (ExampleSaveFileDialog.ShowDialog() == DialogResult.OK)
 			{
-				bool r = mugen.GenerateExample(ExampleSaveFileDialog.FileName);
+				bool r = ServiceFuzzy.GenerateExample(ExampleSaveFileDialog.FileName);
 				if (r)
 				{
 					MessageBox.Show("example is saved.", "DONE", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -82,7 +79,7 @@ namespace unlimited_wldx
 			{
 				string fn = DatabaseOpenFileDialog.FileName;
 				Console.WriteLine(string.Format("open and read XML file: {0}", fn));
-				if (!mugen.ReadAnswerFromXml(fn))
+				if (!ServiceFuzzy.ReadAnswerFromXml(fn))
 				{
 					MessageBox.Show("parse XML error.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				} else
@@ -95,7 +92,7 @@ namespace unlimited_wldx
 
 		private void ShowToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (null == mugen.AnswerDatabase || 0 == mugen.AnswerDatabase.Count)
+			if (null == ServiceFuzzy.QuestionDatabase || 0 == ServiceFuzzy.QuestionDatabase.Count)
 			{
 				MessageBox.Show("please import answer database first.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
@@ -105,7 +102,7 @@ namespace unlimited_wldx
 				MessageBox.Show("cannot find element. you may not enter the right url.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
-			IList<WebQuestion> list = WebHelper.ExtractQuestionFromHtml(WebBrowserMain.Document);
+			IList<WebQuestion> list = ServiceWeb.ExtractQuestionFromHtml(WebBrowserMain.Document);
 			if (null == list && 0 == list.Count)
 			{
 				MessageBox.Show("cannot find element. you may not enter the right url.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -119,10 +116,10 @@ namespace unlimited_wldx
 		private void FindAnswerThread(object param)
 		{
 			ProgressChangedHandler progressChangedHandler = new ProgressChangedHandler(SetProgress);
-			RendererWebHandler rendererWebHandler = new RendererWebHandler(WebHelper.RendererElement);
+			RendererWebHandler rendererWebHandler = new RendererWebHandler(ServiceWeb.RendererElement);
 
 			object[] progressParams = new object[3] { 0, 100, 0 };
-			object[] rendererParams = new object[2];
+			object[] rendererParams = new object[4];
 			try
 			//if (param.GetType() == typeof(IList<WebQuestion>))
 			{
@@ -131,9 +128,13 @@ namespace unlimited_wldx
 				int c = 0;
 				foreach (WebQuestion wq in list)
 				{
-					ISet<int> answers = mugen.FindAnswer(wq);
+					int fi = -1;
+					DBQuestion dq = ServiceFuzzy.FindQuestion(wq, out fi);
+					ISet<int> answers = ServiceFuzzy.FindAnswer(wq, dq);
 					rendererParams[0] = wq;
 					rendererParams[1] = answers;
+					rendererParams[2] = dq;
+					rendererParams[3] = fi;
 					Invoke(rendererWebHandler, rendererParams);
 					//WebHelper.RendererElement(wq, answers);
 
@@ -149,7 +150,7 @@ namespace unlimited_wldx
 			}
 		}
 
-		private delegate void RendererWebHandler(WebQuestion wq, ISet<int> answers);
+		private delegate void RendererWebHandler(WebQuestion wq, ISet<int> answers, DBQuestion dq, int fuzzyIndex);
 		private delegate void ProgressChangedHandler(int min, int max, int value);
 		private void SetProgress(int min, int max, int value)
 		{
@@ -160,7 +161,7 @@ namespace unlimited_wldx
 
 		private void WebBrowserMain_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
 		{
-			if (WebHelper.CheckHtml(WebBrowserMain.Document))
+			if (ServiceWeb.CheckHtml(WebBrowserMain.Document))
 			{
 				LabelWeb.Text = "web element prepared.";
 			}

@@ -1,33 +1,33 @@
-﻿namespace unlimited_wldx
+﻿namespace wldx
 {
-    partial class FromMain
-    {
-        /// <summary>
-        /// 必需的设计器变量。
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class FromMain
+	{
+		/// <summary>
+		/// 必需的设计器变量。
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// 清理所有正在使用的资源。
-        /// </summary>
-        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// 清理所有正在使用的资源。
+		/// </summary>
+		/// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows 窗体设计器生成的代码
+		#region Windows 窗体设计器生成的代码
 
-        /// <summary>
-        /// 设计器支持所需的方法 - 不要修改
-        /// 使用代码编辑器修改此方法的内容。
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// 设计器支持所需的方法 - 不要修改
+		/// 使用代码编辑器修改此方法的内容。
+		/// </summary>
+		private void InitializeComponent()
+		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FromMain));
 			this.statusMain = new System.Windows.Forms.StatusStrip();
 			this.LabelXml = new System.Windows.Forms.ToolStripStatusLabel();
@@ -57,9 +57,9 @@
 			// statusMain
 			// 
 			this.statusMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ProgressBar,
-            this.LabelXml,
-            this.LabelWeb});
+			this.ProgressBar,
+			this.LabelXml,
+			this.LabelWeb});
 			this.statusMain.Location = new System.Drawing.Point(0, 537);
 			this.statusMain.Name = "statusMain";
 			this.statusMain.Size = new System.Drawing.Size(800, 22);
@@ -81,8 +81,8 @@
 			// menuMain
 			// 
 			this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.HelpToolStripMenuItem});
+			this.fileToolStripMenuItem,
+			this.HelpToolStripMenuItem});
 			this.menuMain.Location = new System.Drawing.Point(0, 0);
 			this.menuMain.Name = "menuMain";
 			this.menuMain.Size = new System.Drawing.Size(800, 24);
@@ -92,10 +92,10 @@
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ImportToolStripMenuItem,
-            this.ShowToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.ExitToolStripMenuItem});
+			this.ImportToolStripMenuItem,
+			this.ShowToolStripMenuItem,
+			this.toolStripSeparator1,
+			this.ExitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "&File";
@@ -129,9 +129,9 @@
 			// HelpToolStripMenuItem
 			// 
 			this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ExportStripMenuItem,
-            this.toolStripSeparator2,
-            this.AboutToolStripMenuItem});
+			this.ExportStripMenuItem,
+			this.toolStripSeparator2,
+			this.AboutToolStripMenuItem});
 			this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
 			this.HelpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.HelpToolStripMenuItem.Text = "&Help";
@@ -242,27 +242,27 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.StatusStrip statusMain;
-        private System.Windows.Forms.MenuStrip menuMain;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ShowToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ImportToolStripMenuItem;
-        private System.Windows.Forms.Panel panelNav;
-        private System.Windows.Forms.Button BtnGo;
-        private System.Windows.Forms.TextBox TextNav;
-        private System.Windows.Forms.WebBrowser WebBrowserMain;
-        private System.Windows.Forms.ToolStripMenuItem ExportStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.SaveFileDialog ExampleSaveFileDialog;
-        private System.Windows.Forms.OpenFileDialog DatabaseOpenFileDialog;
+		private System.Windows.Forms.StatusStrip statusMain;
+		private System.Windows.Forms.MenuStrip menuMain;
+		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem ShowToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem ImportToolStripMenuItem;
+		private System.Windows.Forms.Panel panelNav;
+		private System.Windows.Forms.Button BtnGo;
+		private System.Windows.Forms.TextBox TextNav;
+		private System.Windows.Forms.WebBrowser WebBrowserMain;
+		private System.Windows.Forms.ToolStripMenuItem ExportStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.SaveFileDialog ExampleSaveFileDialog;
+		private System.Windows.Forms.OpenFileDialog DatabaseOpenFileDialog;
 		private System.Windows.Forms.ToolStripStatusLabel LabelXml;
 		private System.Windows.Forms.ToolStripStatusLabel LabelWeb;
 		private System.Windows.Forms.ToolStripProgressBar ProgressBar;
