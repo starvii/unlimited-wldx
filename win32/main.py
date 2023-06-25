@@ -1,11 +1,17 @@
 import argparse
 import json
+import sys
+from typing import List
+
 import uvicorn
 import win32gui
+import win32con
+from pydantic import BaseModel
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 
 
-class ArgData:
+class Arguments:
     def __init__(self) -> None:
         self._port = 1995
         self._filename = "./exam.json"
@@ -31,7 +37,19 @@ class ArgData:
         self._port = _args.port if _args.port and (0 < _args.port < 65536) else 1995
 
 
-args = ArgData()
+args = Arguments()
+
+
+class Entities:
+    class RequestQuestion(BaseModel):
+        q: str = ""
+        a: List[str] = []
+
+    class ResponseAnswer(BaseModel):
+        q: str = ""
+        a: List[str] = []
+        ans: str = ""
+        inf: str = ""
 
 
 class Database:
@@ -40,10 +58,24 @@ class Database:
         # load json
 
     def load(self, filename):
-        print(win32gui.GetOpenFileNameW(Title="select the examination database", DefExt="*.json"))
+        while 1:
+            try:
+                raise OSError("xxx")
+            except Exception as e:
+                err = f"无法读取文件[filename]：{e}"
+                sys.stdout.write(err + "\n")
+                win32gui.MessageBox(None, err, "错误", win32con.MB_OK | win32con.MB_ICONERROR)
+                print(win32gui.GetOpenFileNameW(Title="select the examination database", DefExt="*.json"))
 
 
-db = Database()
+database = Database()
+
+
+class Service:
+    pass
+
+
+service = Service()
 
 
 class Web:
@@ -51,18 +83,18 @@ class Web:
 
     @staticmethod
     @app.post("/search")
-    async def search():
+    async def search(q: Entities.RequestQuestion):
         return ""
 
     @staticmethod
     @app.get("")
     async def help():
-        return ""
+        return HTMLResponse("""""")
 
 
 def main():
     args.parse()
-    db.load(args.filename)
+    database.load(args.filename)
     uvicorn.run(Web.app, host="127.0.0.1", port=args.port)
 
 
