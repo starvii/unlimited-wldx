@@ -25,24 +25,27 @@ jquery页面里可能已经自带了，不需要额外加载。
 //      $("pre,code").css("user-select","auto");
 // })();
 
-const TRUNK = "TMTitle";
-const OPTION = "TMOption";
+const _TRUNK = "TMTitle";
+const TRUNK = "#" + _TRUNK;
+const _OPTION = "TMOption";
+const OPTION = "#" + _OPTION;
 
 function allowSelect() {
     'use strict';
     $("pre,code").css("user-select","auto");
-    $("#" + TRUNK).css("user-select","auto");
-    $("#" + OPTION).css("user-select","auto");
+    $(TRUNK).css("user-select","auto");
+    $(OPTION).css("user-select","auto");
 }
 
 function getAnswer() {}
 
 $(document).ready(function() {
     allowSelect();
-    $("#" + TRUNK).each(function() {
+    $(TRUNK).each(function() {
         const qa = new Object();
         qa["q"] = $(this).innerText;
-        a = {}
+        const a = new Array();
+        a.push();
         qa["a"] = a;
         $.post("http://127.0.0.1:1995/wldx", qa, function(data) {
 
